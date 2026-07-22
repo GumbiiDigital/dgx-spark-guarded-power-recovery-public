@@ -1,0 +1,72 @@
+{
+  "schema_version": "public-example-v1",
+  "synthetic": true,
+  "target": {
+    "alias": "compute-a.example",
+    "role": "representative_compute",
+    "mapping": "withheld"
+  },
+  "signals": [
+    {
+      "name": "application_health",
+      "result": "failed"
+    },
+    {
+      "name": "host_reachability",
+      "result": "unknown"
+    },
+    {
+      "name": "peer_health",
+      "result": "healthy"
+    },
+    {
+      "name": "dependency_health",
+      "result": "healthy"
+    }
+  ],
+  "gates": [
+    {
+      "name": "identity_verified",
+      "result": false
+    },
+    {
+      "name": "protected_role",
+      "result": false
+    },
+    {
+      "name": "maintenance_clear",
+      "result": true
+    },
+    {
+      "name": "environment_safe",
+      "result": "unknown"
+    },
+    {
+      "name": "cooldown_clear",
+      "result": true
+    },
+    {
+      "name": "single_operation_lock",
+      "result": true
+    }
+  ],
+  "decision": {
+    "status": "refuse",
+    "reasons": [
+      "Target identity is not verified.",
+      "Environmental state is unknown."
+    ],
+    "expires": "not_issued",
+    "replay_allowed": false
+  },
+  "recovery_contract": {
+    "journal_before_action": true,
+    "verify_every_transition": true,
+    "restore_after_interruption": true,
+    "rollback": "Restore the journaled synthetic target and escalate."
+  },
+  "limitations": [
+    "No threshold or equipment map is included.",
+    "This record cannot control hardware."
+  ]
+}
