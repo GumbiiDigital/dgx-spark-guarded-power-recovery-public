@@ -1,12 +1,10 @@
 ```mermaid
-flowchart LR
-  S["Independent failure signals"] --> I["Identity and role verification"]
-  I --> G["Maintenance, environment, cooldown, and dependency gates"]
-  G --> D{"Decision"}
-  D -->|Unknown or unsafe| R["Refuse with reasons"]
-  D -->|Eligible| J["Write recovery journal"]
-  J --> A["Bounded recovery action"]
-  A --> V["State verification"]
-  V -->|Mismatch| B["Restore and escalate"]
-  V -->|Verified| C["Cooldown and receipt"]
+flowchart TD
+    S["Independent health and identity signals"] --> G{"Isolation, maintenance, alarm, temperature, cooldown"}
+    G -->|fail or unknown| N["Refuse and record reasons"]
+    G -->|pass| D["Single-use decision bound to evidence"]
+    D --> J["Journal before transition"]
+    J --> O["Bounded state transition"]
+    O --> V["Readback and restore verification"]
+    V --> R["Receipt or alert; no retry loop"]
 ```
