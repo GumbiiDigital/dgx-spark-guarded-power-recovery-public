@@ -44,3 +44,8 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 ## Evidence rules and limits
 
 The readings above are historical source evidence, not current status. This is a public project interface, not a live power-control repository. It publishes no vendor/controller identity, outlet map, address, credential, raw telemetry, or command targeting real equipment.
+
+## Copyright
+
+Copyright (c) 2026 Gumbii Digital. All rights reserved. See
+[COPYRIGHT.md](COPYRIGHT.md) for the publication and reuse terms.
